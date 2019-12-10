@@ -18,7 +18,9 @@ app.get('/:command', (req, res) => {
 
 app.get('/richlist:n', (req, res) => {
   let topn = req.params.n;
-  exec(('~/komodo/src/komodo-cli -ac_name=CCL getsnapshot '+topn), (err, stdout, stderr) => {
+  let toDo = '~/komodo/src/komodo-cli -ac_name=CCL getsnapshot '+topn;
+  console.log(`executing ${toDo}`);
+  exec((toDo), (err, stdout, stderr) => {
     if(err) {
       return;
     }
