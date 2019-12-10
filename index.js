@@ -16,4 +16,15 @@ app.get('/:command', (req, res) => {
   //res.send(answ);
 });
 
+app.get('/richlist:n', (req, res) => {
+  let topn = req.params.n;
+  exec(('~/komodo/src/komodo-cli getsnapshot'+topn), (err, stdout, stderr) => {
+    if(err) {
+      return;
+    }
+    res.send(`answer: ${stdout}`);
+  });
+});
+
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
